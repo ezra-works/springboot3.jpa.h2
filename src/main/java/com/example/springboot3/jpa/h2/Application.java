@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2023. Medavakkam, All rights reserved.
+ */
+
 package com.example.springboot3.jpa.h2;
 
 import org.springframework.boot.SpringApplication;
