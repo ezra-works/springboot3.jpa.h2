@@ -16,7 +16,7 @@ public class Home {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private String relation;
+    private REL relation;
 
     public Integer getId() {
         return id;
@@ -34,11 +34,11 @@ public class Home {
         this.name = name;
     }
 
-    public String getRelation() {
+    public REL getRelation() {
         return relation;
     }
 
-    public void setRelation(String relation) {
+    public void setRelation(REL relation) {
         this.relation = relation;
     }
 
@@ -51,7 +51,7 @@ public class Home {
                 '}';
     }
 
-    enum REL {
+    public enum REL {
         DAD, MOM, Son, Daughter
     }
 }
