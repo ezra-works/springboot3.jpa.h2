@@ -1,0 +1,54 @@
+/*
+ * Copyright (c) 2023. Medavakkam, All rights reserved.
+ */
+
+package com.example.springboot3.jpa.h2.service;
+
+import com.example.springboot3.jpa.h2.entity.Home;
+import com.example.springboot3.jpa.h2.repository.HomeRepository;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+
+//@ExtendWith(MockitoExtension.class)
+public class HomeServiceTest {
+
+    //    @Mock
+    private HomeRepository homeRepository;
+    //    @InjectMocks
+    private HomeService homeService;
+
+    @BeforeEach
+    void init() {
+        homeRepository = mock(HomeRepository.class);
+        homeService = new HomeService(homeRepository);
+    }
+
+    @Test
+    @DisplayName("Get all homies Test")
+    void test1() {
+        when(homeRepository.findAll()).thenReturn(new ArrayList<>());
+        assertNotNull(homeService.getAllHomies());
+    }
+
+    @Test
+    @DisplayName("Get all homies names Test")
+    void test2() {
+        List<Home> hList = new ArrayList<>();
+        hList.add(new Home(1, "Aladdin", Home.REL.DAD));
+        hList.add(new Home(2, "Jasmine", Home.REL.MOM));
+        hList.add(new Home(3, "Abu", Home.REL.Son));
+        when(homeRepository.findAll()).thenReturn(hList);
+
+        assertTrue(homeService.getAllHomiesNames().size() > 2);
+    }
+}

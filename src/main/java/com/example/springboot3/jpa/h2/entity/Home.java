@@ -18,6 +18,15 @@ public class Home {
     private String name;
     private REL relation;
 
+    public Home() {
+    }
+
+    public Home(Integer id, String name, REL relation) {
+        this.id = id;
+        this.name = name;
+        this.relation = relation;
+    }
+
     public Integer getId() {
         return id;
     }
