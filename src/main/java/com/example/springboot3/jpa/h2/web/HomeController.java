@@ -16,7 +16,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/homies")
 public class HomeController {
-
     private final HomeService homeService;
 
     public HomeController(HomeService homeService) {
@@ -38,7 +37,7 @@ public class HomeController {
             h2.setRelation(Home.REL.MOM);
 
             Home h3 = new Home();
-            h3.setName("barry");
+            h3.setName("Barry");
             h3.setRelation(Home.REL.Son);
 
             addHomies.add(h1);
