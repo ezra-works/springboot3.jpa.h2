@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
@@ -50,5 +51,17 @@ public class HomeServiceTest {
         when(homeRepository.findAll()).thenReturn(hList);
 
         assertTrue(homeService.getAllHomiesNames().size() > 2);
+    }
+
+    @Test
+    @DisplayName("Get all homies id Test")
+    void test3() {
+        List<Home> hList = new ArrayList<>();
+        hList.add(new Home(1, "Mac", Home.REL.DAD));
+        hList.add(new Home(2, "Big Mac", Home.REL.MOM));
+        hList.add(new Home(3, "Mac mini", Home.REL.Son));
+        when(homeRepository.findAll()).thenReturn(hList);
+
+        assertEquals(3, homeService.getAllHomiesId().get(2));
     }
 }

@@ -28,6 +28,10 @@ public class HomeService {
         return getAllHomies().stream().map(Home::getName).collect(Collectors.toList());
     }
 
+    public List<Integer> getAllHomiesId() {
+        return getAllHomies().stream().map(Home::getId).collect(Collectors.toList());
+    }
+
     public List<Home> saveHomies(List<Home> homies) {
         return homeRepository.saveAll(homies);
     }
