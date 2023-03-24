@@ -14,6 +14,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
@@ -52,5 +53,16 @@ public class HomeControllerTest {
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(content().contentType("application/json"))
                 .andExpect(jsonPath("$.[0].name").value("Pac"));
+    }
+
+    @Test
+    @DisplayName("Get homies names Test")
+    void test3() throws Exception {
+        when(homeService.getAllHomiesNames()).thenReturn(Arrays.asList("Mac", "Big Mac", "Mac mini"));
+
+        mockMvc.perform(get("/homies/names"))
+                .andExpect(status().is2xxSuccessful())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$").isArray());
     }
 }
