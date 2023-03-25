@@ -35,4 +35,8 @@ public class HomeService {
     public List<Home> saveHomies(List<Home> homies) {
         return homeRepository.saveAll(homies);
     }
+
+    public Home saveHomie(Home newHomie) {
+        return homeRepository.save(newHomie);
+    }
 }

@@ -5,8 +5,11 @@
 package com.example.springboot3.jpa.h2.web;
 
 import com.example.springboot3.jpa.h2.entity.Home;
+import com.example.springboot3.jpa.h2.records.NewHomie;
 import com.example.springboot3.jpa.h2.service.HomeService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -55,8 +58,12 @@ public class HomeController {
         return homeService.getAllHomiesNames();
     }
 
-//    @PostMapping("/add")
-//    Home add(@RequestBody Home body) {
-//        return homeService.saveHomie(body);
-//    }
+    @PostMapping("/add")
+    Home add(@RequestBody NewHomie body) {
+        Home h1 = new Home();
+        h1.setName(body.name());
+        h1.setRelation(body.relation());
+
+        return homeService.saveHomie(h1);
+    }
 }
