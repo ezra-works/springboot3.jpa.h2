@@ -6,5 +6,5 @@ package com.example.springboot3.jpa.h2.records;
 
 import com.example.springboot3.jpa.h2.entity.Home;
 
-public record NewHomie(String name, Home.REL relation) {
+public record NewMember(String name, Home.REL relation) {
 }

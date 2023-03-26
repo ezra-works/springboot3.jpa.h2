@@ -35,14 +35,14 @@ public class HomeServiceTest {
     }
 
     @Test
-    @DisplayName("Get all homies Test")
+    @DisplayName("Get all members Test")
     void test1() {
         when(homeRepository.findAll()).thenReturn(new ArrayList<>());
-        assertNotNull(homeService.getAllHomies());
+        assertNotNull(homeService.getFamily());
     }
 
     @Test
-    @DisplayName("Get all homies names Test")
+    @DisplayName("Get all members names Test")
     void test2() {
         List<Home> hList = new ArrayList<>();
         hList.add(new Home(1, "Aladdin", Home.REL.DAD));
@@ -50,11 +50,11 @@ public class HomeServiceTest {
         hList.add(new Home(3, "Abu", Home.REL.Son));
         when(homeRepository.findAll()).thenReturn(hList);
 
-        assertTrue(homeService.getAllHomiesNames().size() > 2);
+        assertTrue(homeService.getFamilyMemberNames().size() > 2);
     }
 
     @Test
-    @DisplayName("Get all homies id Test")
+    @DisplayName("Get all members id Test")
     void test3() {
         List<Home> hList = new ArrayList<>();
         hList.add(new Home(1, "Mac", Home.REL.DAD));
@@ -62,6 +62,6 @@ public class HomeServiceTest {
         hList.add(new Home(3, "Mac mini", Home.REL.Son));
         when(homeRepository.findAll()).thenReturn(hList);
 
-        assertEquals(3, homeService.getAllHomiesId().get(2));
+        assertEquals(3, homeService.getFamilyMemberIds().get(2));
     }
 }

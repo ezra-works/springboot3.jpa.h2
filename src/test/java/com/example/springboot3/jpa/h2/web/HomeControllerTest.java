@@ -5,7 +5,7 @@
 package com.example.springboot3.jpa.h2.web;
 
 import com.example.springboot3.jpa.h2.entity.Home;
-import com.example.springboot3.jpa.h2.records.NewHomie;
+import com.example.springboot3.jpa.h2.records.NewMember;
 import com.example.springboot3.jpa.h2.service.HomeService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
@@ -38,9 +38,9 @@ public class HomeControllerTest {
     @Test
     @DisplayName("Get default resource [] Test")
     void test1() throws Exception {
-        when(homeService.getAllHomies()).thenReturn(new ArrayList<>());
+        when(homeService.getFamily()).thenReturn(new ArrayList<>());
 
-        mockMvc.perform(get("/homies"))
+        mockMvc.perform(get("/members"))
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(content().contentType("application/json"))
                 .andExpect(jsonPath("$").isArray());
@@ -52,34 +52,34 @@ public class HomeControllerTest {
 
         List<Home> homeList = new ArrayList<>();
         homeList.add(new Home(1, "Pac", Home.REL.DAD));
-        when(homeService.getAllHomies()).thenReturn(homeList);
+        when(homeService.getFamily()).thenReturn(homeList);
 
-        mockMvc.perform(get("/homies"))
+        mockMvc.perform(get("/members"))
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(content().contentType("application/json"))
                 .andExpect(jsonPath("$.[0].name").value("Pac"));
     }
 
     @Test
-    @DisplayName("Get homies names Test")
+    @DisplayName("Get members names Test")
     void test3() throws Exception {
-        when(homeService.getAllHomiesNames()).thenReturn(Arrays.asList("Mac", "Big Mac", "Mac mini"));
+        when(homeService.getFamilyMemberNames()).thenReturn(Arrays.asList("Mac", "Big Mac", "Mac mini"));
 
-        mockMvc.perform(get("/homies/names"))
+        mockMvc.perform(get("/members/names"))
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(content().contentType("application/json"))
                 .andExpect(jsonPath("$").isArray());
     }
 
     @Test
-    @DisplayName("Post new homie Test")
+    @DisplayName("Post new member Test")
     void test4() throws Exception {
 
         Home h1 = new Home(4, "Mel", Home.REL.Daughter);
-        NewHomie n1 = new NewHomie(h1.getName(), h1.getRelation());
-        when(homeService.saveHomie(any())).thenReturn(h1);
+        NewMember n1 = new NewMember(h1.getName(), h1.getRelation());
+        when(homeService.saveMember(any())).thenReturn(h1);
 
-        mockMvc.perform(post("/homies/add")
+        mockMvc.perform(post("/members/add")
                         .contentType(MediaType.APPLICATION_JSON)
 //                        .content("{\"name\": \"Mel\", \"REL\": \"Daughter\"}"))
                         .content(new ObjectMapper().writeValueAsString(n1)))

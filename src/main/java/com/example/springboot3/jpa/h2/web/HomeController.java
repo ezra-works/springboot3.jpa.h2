@@ -5,7 +5,7 @@
 package com.example.springboot3.jpa.h2.web;
 
 import com.example.springboot3.jpa.h2.entity.Home;
-import com.example.springboot3.jpa.h2.records.NewHomie;
+import com.example.springboot3.jpa.h2.records.NewMember;
 import com.example.springboot3.jpa.h2.service.HomeService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/homies")
+@RequestMapping("/members")
 public class HomeController {
     private final HomeService homeService;
 
@@ -28,9 +28,9 @@ public class HomeController {
     @GetMapping("")
     List<Home> showHome() {
 
-        List<Home> all = homeService.getAllHomies();
+        List<Home> all = homeService.getFamily();
         if (all.size() == 0) {
-            List<Home> addHomies = new ArrayList<>();
+            List<Home> addMembers = new ArrayList<>();
             Home h1 = new Home();
             h1.setName("Harry");
             h1.setRelation(Home.REL.DAD);
@@ -43,27 +43,27 @@ public class HomeController {
             h3.setName("Barry");
             h3.setRelation(Home.REL.Son);
 
-            addHomies.add(h1);
-            addHomies.add(h2);
-            addHomies.add(h3);
+            addMembers.add(h1);
+            addMembers.add(h2);
+            addMembers.add(h3);
 
-            //save the homies
-            all = homeService.saveHomies(addHomies);
+            //save the members
+            all = homeService.saveMembers(addMembers);
         }
         return all;
     }
 
     @GetMapping("/names")
-    List<String> getHomiesNames() {
-        return homeService.getAllHomiesNames();
+    List<String> getNames() {
+        return homeService.getFamilyMemberNames();
     }
 
     @PostMapping("/add")
-    Home add(@RequestBody NewHomie body) {
+    Home add(@RequestBody NewMember body) {
         Home h1 = new Home();
         h1.setName(body.name());
         h1.setRelation(body.relation());
 
-        return homeService.saveHomie(h1);
+        return homeService.saveMember(h1);
     }
 }

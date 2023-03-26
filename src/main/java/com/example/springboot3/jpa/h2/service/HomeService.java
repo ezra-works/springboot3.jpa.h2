@@ -20,23 +20,23 @@ public class HomeService {
         this.homeRepository = homeRepository;
     }
 
-    public List<Home> getAllHomies() {
+    public List<Home> getFamily() {
         return homeRepository.findAll();
     }
 
-    public List<String> getAllHomiesNames() {
-        return getAllHomies().stream().map(Home::getName).collect(Collectors.toList());
+    public List<String> getFamilyMemberNames() {
+        return getFamily().stream().map(Home::getName).collect(Collectors.toList());
     }
 
-    public List<Integer> getAllHomiesId() {
-        return getAllHomies().stream().map(Home::getId).collect(Collectors.toList());
+    public List<Integer> getFamilyMemberIds() {
+        return getFamily().stream().map(Home::getId).collect(Collectors.toList());
     }
 
-    public List<Home> saveHomies(List<Home> homies) {
-        return homeRepository.saveAll(homies);
+    public List<Home> saveMembers(List<Home> members) {
+        return homeRepository.saveAll(members);
     }
 
-    public Home saveHomie(Home newHomie) {
-        return homeRepository.save(newHomie);
+    public Home saveMember(Home newMember) {
+        return homeRepository.save(newMember);
     }
 }
