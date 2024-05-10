@@ -47,7 +47,7 @@
 - does not require @SpringBootTest, or @WebMvcTest
 - runs in milliseconds (ms)
 - use it for service testing, bean/pojo testing
-- mock service, repository at this testing
+- we mock service, repository at this testing
 
 ### Web Layer Test
 
